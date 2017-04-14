@@ -31,11 +31,60 @@ plt.show()
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
 
+import time
+from sklearn.ensemble import RandomForestClassifier
 
+clf = RandomForestClassifier(n_estimators=200)
 
+t0 = time.time()
+clf = clf.fit(features_train, labels_train)
+print "training time for clf fit:", round(time.time()-t0, 3), "s"
 
+t0 = time.time()
+pred = clf.predict(features_test)
+print "training time for clf predict:", round(time.time()-t0, 3), "s"
 
+from sklearn.metrics.scorer import accuracy_score
 
+accuracy = accuracy_score(pred,labels_test)
+print "Random Forest accuracy is:"
+print(accuracy)
+
+from sklearn.ensemble import AdaBoostClassifier
+
+clf = AdaBoostClassifier(n_estimators=50)
+
+t0 = time.time()
+clf = clf.fit(features_train, labels_train)
+print "training time for clf fit:", round(time.time()-t0, 3), "s"
+
+t0 = time.time()
+pred = clf.predict(features_test)
+print "training time for clf predict:", round(time.time()-t0, 3), "s"
+
+from sklearn.metrics.scorer import accuracy_score
+
+accuracy = accuracy_score(pred,labels_test)
+print "Adaboost accuracy is:"
+print(accuracy)
+
+from sklearn.neighbors import KNeighborsClassifier
+
+clf = KNeighborsClassifier(n_neighbors=20, weights='uniform', algorithm='auto', metric='chebyshev')
+
+t0 = time.time()
+clf = clf.fit(features_train, labels_train)
+print "training time for clf fit:", round(time.time()-t0, 3), "s"
+
+t0 = time.time()
+pred = clf.predict(features_test)
+print "training time for clf predict:", round(time.time()-t0, 3), "s"
+
+from sklearn.metrics.scorer import accuracy_score
+
+accuracy = accuracy_score(pred,labels_test)
+print "KNN accuracy is:"
+print(accuracy)
 
 
 try:
